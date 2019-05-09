@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+  
+  <camera>
+    <position>0,0.1,1</position>
+    <direction>0,0,-1</direction>
+    <fov>100</fov>
+    <aperture>0.01</aperture>
+    <focusdist>1</focusdist>
+  </camera>
+    
+  <materials>
+    <metal name="violet">
+      <albedo>0.58,0,0.827</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="indigo">
+      <albedo>0.29,0,0.51</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="blue">
+      <albedo>0,0.1,1</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="green">
+      <albedo>0,1,0.1</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="yellow">
+      <albedo>1,1,0</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="orange">
+      <albedo>1,0.5,0</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="red">
+      <albedo>1,0,0</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <metal name="silver">
+      <albedo>0.753,0.753,0.753</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+  </materials>
+  
+  <objects>
+    <sphere material="violet">
+      <center>-1.98,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="indigo">
+      <center>-1.32,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="blue">
+      <center>-0.66,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="green">
+      <center>0,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="yellow">
+      <center>0.66,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="orange">
+      <center>1.32,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="red">
+      <center>1.98,0,-1</center>
+      <radius>0.33</radius>
+    </sphere>
+    <sphere material="silver">
+      <center>0,-100.33,-1</center>
+      <radius>100</radius>
+    </sphere>
+  </objects>
+  
+</scene>

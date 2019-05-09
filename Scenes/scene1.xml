@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+  
+  <camera>
+    <position>0,0,0</position>
+    <direction>0,0,-1</direction>
+    <fov>120</fov>
+    <aperture>0.01</aperture>
+    <focusdist>1</focusdist>
+  </camera>
+    
+  <materials>
+    <lambertian name="test">
+      <albedo>0.1,0.3,0.8</albedo>
+    </lambertian>
+  </materials>
+  
+  <objects>
+    <sphere material="test">
+      <center>0,0,-1</center>
+      <radius>0.5</radius>
+    </sphere>
+  </objects>
+  
+</scene>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+  
+  <camera>
+    <position>0,0,0</position>
+    <direction>0,0,-1</direction>
+    <fov>120</fov>
+    <aperture>0.01</aperture>
+    <focusdist>1</focusdist>
+  </camera>
+    
+  <materials>
+    <lambertian name="diffuse">
+      <albedo>0.1,0.3,0.8</albedo>
+    </lambertian>
+    <lambertian name="sol">
+      <albedo>0.5,0.5,0.5</albedo>
+    </lambertian>
+    <metal name="metal">
+      <albedo>0.7,0.3,0.2</albedo>
+      <fuzz>0.1</fuzz>
+    </metal>
+    <dielectric name="dielectric">
+      <indice>1.5</indice>
+    </dielectric>
+  </materials>
+  
+  <objects>
+    <sphere material="diffuse">
+      <center>0,0,-1</center>
+      <radius>0.5</radius>
+    </sphere>
+    <sphere material="metal">
+      <center>1,0,-1</center>
+      <radius>0.5</radius>
+    </sphere>
+    <sphere material="dielectric">
+      <center>-1,0,-1</center>
+      <radius>0.5</radius>
+    </sphere>
+    <sphere material="dielectric">
+      <center>-1,0,-1</center>
+      <radius>-0.49</radius>
+    </sphere>
+    <sphere material="sol">
+      <center>0,-100.5,-1</center>
+      <radius>100</radius>
+    </sphere>
+  </objects>
+  
+</scene>
