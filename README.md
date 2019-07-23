@@ -38,13 +38,13 @@ Scene 6
 
 ### Prerequisites
 
-Windows only
+Windows only.
 
-Visual studio and Qt installed
+Visual studio and Qt installed.
 
 ### How to use it
 
-Launch the executable `./cpp_zia` or `cpp_zia.exe`
+Launch the executable either inside Visual Studio or standalone
 
 ## License
 
