@@ -12,6 +12,8 @@ The raytracer part of the software is based on the raytracing books of Peter Shi
 - XML scene files
 - Multithreading
 - "Real-time" view of the rendering.
+- Save rendered image in ppm format
+
 
 - Materials
 - Shapes (only circle for the moment)
