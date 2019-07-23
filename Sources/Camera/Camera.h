@@ -11,9 +11,12 @@ public:
 		float vFov,              // vFov is top to bottom in degrees
 		float aspect,
 		float aperture,
-		float focusDist) 
+		float focusDist,
+		float t0, float t1) 
 		: mRandom(0.0f, 1.0f)
 	{
+		time0 = t0;
+		time1 = t1;
 		lensRadius = aperture / 2.0f;
 		float theta = vFov * M_PI / 180.0f;
 		float halfHeight = std::tan(theta / 2.0f);
@@ -31,7 +34,8 @@ public:
 	{
 		Vec3 rd = lensRadius * mRandom.randomInUnitDisk();
 		Vec3 offset = u * rd.x() + v * rd.y();
-		return Ray(origin + offset, lowerLeftCorner + u * horizontal + v * vertical - origin - offset);
+		float time = time0 + mRandom.generateNumber() * (time1 - time0);
+		return Ray(origin + offset, lowerLeftCorner + u * horizontal + v * vertical - origin - offset, time);
 	}
 
 public:
@@ -40,6 +44,7 @@ public:
 	Vec3 horizontal;
 	Vec3 vertical;
 	Vec3 u, v, w;
+	float time0, time1;
 	float lensRadius;
 	Random mRandom;
 };

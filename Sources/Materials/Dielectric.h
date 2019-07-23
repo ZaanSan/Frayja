@@ -38,11 +38,11 @@ public:
 		}
 		if (mRandom.generateNumber() < reflectProb)
 		{
-			scattered = Ray(rec.p, reflected);
+			scattered = Ray(rec.p, reflected, rIn.time());
 		}
 		else
 		{
-			scattered = Ray(rec.p, refracted);
+			scattered = Ray(rec.p, refracted, rIn.time());
 		}
 		return true;
 	}
@@ -67,7 +67,7 @@ private:
 			return false;
 	}
 
-	// Varies reflectivity with angles (like real life => look at a window at a steep angle and itbecomes a mirror)
+	// Varies reflectivity with angles (like real life => look at a window at a steep angle and it becomes a mirror)
 	// Cristophe Schlick approximation
 	float schlick(float cosine, float refNdx)
 	{

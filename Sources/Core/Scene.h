@@ -16,6 +16,7 @@
 #include "../Materials/Dielectric.h"
 
 #include "../Hitable/Sphere.h"
+#include "../Hitable/MovingSphere.h"
 #include "../Hitable/HitableList.h"
 
 class Scene
@@ -40,7 +41,7 @@ private:
 	CameraConfiguration		mCameraConf;
 	std::vector<Hitable*>	mHitables;
 	std::vector<Material*>	mMaterials;
-	HitableList*			mWorld;
+	Hitable*				mWorld;
 	std::string				mFile;
 
 	// Internal use
@@ -51,22 +52,24 @@ private:
 	bool mHasCamConf;
 
 private:
-	void	resetData();
+	void		resetData();
 
-	void	parseCamera();
-	void	parseMaterials();
-	void	parseObject();
+	void		parseCamera();
+	void		parseMaterials();
+	void		parseObject();
 
-	void	parseSphere();
-	void	parseLambertian();
-	void	parseMetal();
-	void	parseDielectric();
+	void		parseSphere();
+	void		parseMovingSphere();
+	void		parseLambertian();
+	Texture*	parseChecker();
+	void		parseMetal();
+	void		parseDielectric();
 
-	void	parseVec3(Vec3& v);
-	void	parseFloat(float& v);
-	void	parseAttrString(const QString& attr, std::string& v);
+	void		parseVec3(Vec3& v);
+	void		parseFloat(float& v);
+	void		parseAttrString(const QString& attr, std::string& v);
 
-	void	addMaterial(const std::string& name, Material* mat);
-	void	generateHitableList();
+	void		addMaterial(const std::string& name, Material* mat);
+	void		generateHitableList();
 
 };

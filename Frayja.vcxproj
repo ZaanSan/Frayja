@@ -123,10 +123,17 @@
     <ClCompile Include="Sources\Core\RenderingThread.cpp" />
     <ClCompile Include="Sources\Core\Scene.cpp" />
     <ClCompile Include="Sources\GUI\FrayjaGUI.cpp" />
+    <ClCompile Include="Sources\Hitable\AABB.cpp" />
+    <ClCompile Include="Sources\Hitable\Bvh.cpp" />
     <ClCompile Include="Sources\Hitable\HitableList.cpp" />
+    <ClCompile Include="Sources\Hitable\MovingSphere.cpp" />
     <ClCompile Include="Sources\Hitable\Sphere.cpp" />
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\Maths\Random.cpp" />
+    <ClCompile Include="Sources\Texture\CheckerTexture.cpp" />
+    <ClCompile Include="Sources\Texture\ConstantTexture.cpp" />
+    <ClCompile Include="Sources\Texture\NoiseTexture.cpp" />
+    <ClCompile Include="Sources\Texture\Perlin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Sources\GUI\FrayjaGUI.h" />
@@ -138,6 +145,11 @@
     <QtRcc Include="Sources\Frayja.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Texture\CheckerTexture.h" />
+    <ClInclude Include="Sources\Texture\ConstantTexture.h" />
+    <ClInclude Include="Sources\Texture\NoiseTexture.h" />
+    <ClInclude Include="Sources\Texture\Perlin.h" />
+    <ClInclude Include="Sources\Texture\Texture.h" />
     <QtMoc Include="Sources\Core\FrayjaThread.h" />
     <ClInclude Include="Sources\Camera\Camera.h" />
     <ClInclude Include="Sources\Core\Frayja.h" />
@@ -146,8 +158,11 @@
     <QtMoc Include="Sources\Core\RenderingThread.h" />
     <ClInclude Include="Sources\Core\Scene.h" />
     <ClInclude Include="Sources\GUI\GuiApi.h" />
+    <ClInclude Include="Sources\Hitable\AABB.h" />
+    <ClInclude Include="Sources\Hitable\Bvh.h" />
     <ClInclude Include="Sources\Hitable\Hitable.h" />
     <ClInclude Include="Sources\Hitable\HitableList.h" />
+    <ClInclude Include="Sources\Hitable\MovingSphere.h" />
     <ClInclude Include="Sources\Hitable\Sphere.h" />
     <ClInclude Include="Sources\Materials\Dielectric.h" />
     <ClInclude Include="Sources\Materials\Lambertian.h" />
@@ -160,6 +175,10 @@
   <ItemGroup>
     <Xml Include="Scenes\scene1.xml" />
     <Xml Include="Scenes\scene2.xml" />
+    <Xml Include="Scenes\scene3.xml" />
+    <Xml Include="Scenes\scene4.xml" />
+    <Xml Include="Scenes\scene5.xml" />
+    <Xml Include="Scenes\scene6.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -1,11 +1,15 @@
 #include "Frayja.h"
 
 #include "../Hitable/Sphere.h"
+#include "../Hitable/MovingSphere.h"
 #include "../Hitable/HitableList.h"
+#include "../Hitable/Bvh.h"
 #include "../Camera/Camera.h"
 #include "../Materials/Lambertian.h"
 #include "../Materials/Metal.h"
 #include "../Materials/Dielectric.h"
+#include "../Texture/ConstantTexture.h"
+#include "../Texture/CheckerTexture.h"
 
 #include <iostream>
 #include <fstream>
@@ -31,7 +35,11 @@ Hitable* randomScene() {
 	int n = 500;
 	Hitable** list = new Hitable*[n + 1.0];
 
-	list[0] = new Sphere(Vec3(0, -1000, 0), 1000, new Lambertian(Vec3(0.5, 0.5, 0.5)));
+	Texture* checker = new CheckerTexture(
+		new ConstantTexture(Vec3(0.2f, 0.3f, 0.1f)),
+		new ConstantTexture(Vec3(0.9f, 0.9f, 0.9f))
+	);
+	list[0] = new Sphere(Vec3(0, -1000, 0), 1000, new Lambertian(checker));
 	int i = 1;
 	for (int a = -11; a < 11; a++)
 	{
@@ -48,11 +56,13 @@ Hitable* randomScene() {
 			{
 				if (chooseMat < 0.8) // diffuse
 				{
-					list[i++] = new Sphere(center, 0.2, new Lambertian(Vec3(
-						random.generateNumber() * random.generateNumber(),
-						random.generateNumber() * random.generateNumber(),
-						random.generateNumber() * random.generateNumber()
-					)));
+					list[i++] = new MovingSphere(center, 
+						center + Vec3(0, 0.5 * random.generateNumber(), 0), 
+						0.0, 1.0, 0.2,
+						new Lambertian(new ConstantTexture(Vec3(random.generateNumber() * random.generateNumber(),
+							random.generateNumber() * random.generateNumber(),
+							random.generateNumber() * random.generateNumber()
+						))));
 				}
 				else if (chooseMat < 0.95) // metal
 				{
@@ -73,10 +83,10 @@ Hitable* randomScene() {
 	}
 
 	list[i++] = new Sphere(Vec3(0, 1, 0), 1.0, new Dielectric(1.5));
-	list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambertian(Vec3(0.4, 0.2, 0.1)));
+	list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambertian(new ConstantTexture(Vec3(0.4, 0.2, 0.1))));
 	list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
 
-	return new HitableList(list, i);
+	return new BvhNode(list, i, 0.0f, 1.0f);
 }
 
 void Frayja::setConfiguration(FrayjaConfiguration conf)
@@ -98,16 +108,20 @@ void Frayja::initRendering()
 		mConfiguration.camera.fov,
 		float(mConfiguration.general.width) / float(mConfiguration.general.height),
 		mConfiguration.camera.aperture,
-		mConfiguration.camera.distToFocus
+		mConfiguration.camera.distToFocus,
+		0.0f,
+		1.0f
 	);
 
 	mWorld = (Hitable*)mScene->getObjects();
+	//mWorld = randomScene();
 }
 
 void Frayja::endRendering()
 {
 	if (mCamera)
 		delete mCamera;
+	//delete mWorld;
 	mWorld = nullptr;
 }
 

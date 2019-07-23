@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+
+  <camera>
+    <position>13,2,3</position>
+    <direction>0,0,0</direction>
+    <fov>20</fov>
+    <aperture>0.0</aperture>
+    <focusdist>10</focusdist>
+  </camera>
+
+  <materials>
+    <lambertian name="checker">
+      <checker>
+        <even>0.2,0.3,0.1</even>
+        <odd>0.9,0.9,0.9</odd>
+      </checker>
+    </lambertian>
+  </materials>
+
+  <objects>
+    <sphere material="checker">
+      <center>0,-10,0</center>
+      <radius>10</radius>
+    </sphere>
+    <sphere material="checker">
+      <center>0,10,0</center>
+      <radius>10</radius>
+    </sphere>
+  </objects>
+
+</scene>

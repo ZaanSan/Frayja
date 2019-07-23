@@ -17,7 +17,7 @@ public:
 	bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& attenuation, Ray& scattered) override
 	{
 		Vec3 reflected = Vec3::reflect(Vec3::unitVector(rIn.direction()), rec.normal);
-		scattered = Ray(rec.p, reflected + fuzz * mRandom.randomInUnitSphere());
+		scattered = Ray(rec.p, reflected + fuzz * mRandom.randomInUnitSphere(), rIn.time());
 		attenuation = albedo;
 		return (Vec3::dot(scattered.direction(), rec.normal) > 0);
 	}

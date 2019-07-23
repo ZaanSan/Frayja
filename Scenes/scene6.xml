@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene>
+
+  <camera>
+    <position>13,2,3</position>
+    <direction>0,0,0</direction>
+    <fov>20</fov>
+    <aperture>0.0</aperture>
+    <focusdist>10</focusdist>
+  </camera>
+
+  <materials>
+    <lambertian name="noise">
+      <noise>3</noise>
+    </lambertian>
+  </materials>
+
+  <objects>
+    <sphere material="noise">
+      <center>0,-1000,0</center>
+      <radius>1000</radius>
+    </sphere>
+    <sphere material="noise">
+      <center>0,2,0</center>
+      <radius>2</radius>
+    </sphere>
+  </objects>
+
+</scene>

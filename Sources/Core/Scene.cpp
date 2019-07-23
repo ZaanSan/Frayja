@@ -1,6 +1,10 @@
 #include "Scene.h"
 
 #include <QDebug>
+#include "../Hitable/Bvh.h"
+#include "../Texture/ConstantTexture.h"
+#include "../Texture/CheckerTexture.h"
+#include "../Texture/NoiseTexture.h"
 
 Scene::Scene()
 	: mCameraConf(),
@@ -114,7 +118,9 @@ void Scene::resetData()
 
 void Scene::generateHitableList()
 {
-	mWorld = new HitableList(&mHitables[0], mHitables.size());
+	//mWorld = new HitableList(&mHitables[0], mHitables.size());
+	qDebug() << mHitables.size();
+	mWorld = new BvhNode(&mHitables[0], mHitables.size(), 0.0f, 1.0f);
 }
 
 #pragma region Camera
@@ -182,20 +188,58 @@ void Scene::parseLambertian()
 {
 	Q_ASSERT(mReader.isStartElement() && mReader.name() == "lambertian");
 	
+	Texture* texture = nullptr;
 	std::string name;
-	Vec3 albedo;
 
 	parseAttrString("name", name);
 	while (mReader.readNextStartElement())
 	{
 		if (mReader.name() == "albedo")
 		{
+			Vec3 albedo;
 			parseVec3(albedo);
+			if (texture == nullptr)
+				texture = new ConstantTexture(albedo);
+		}
+		else if (mReader.name() == "checker")
+		{
+			if (texture == nullptr)
+				texture = parseChecker();
+		}
+		else if (mReader.name() == "noise")
+		{
+			//TODO : Fix this (don't need to parse float)
+			float scale;
+			parseFloat(scale);
+			if (texture == nullptr)
+				texture = new NoiseTexture(scale);
 		}
 		else
 			mReader.skipCurrentElement();
 	}
-	addMaterial(name, new Lambertian(albedo));
+	addMaterial(name, new Lambertian(texture));
+}
+
+Texture* Scene::parseChecker()
+{
+	Q_ASSERT(mReader.isStartElement() && mReader.name() == "checker");
+
+	Vec3 even, odd;
+
+	while (mReader.readNextStartElement())
+	{
+		if (mReader.name() == "even")
+		{
+			parseVec3(even);
+		}
+		else if (mReader.name() == "odd")
+		{
+			parseVec3(odd);
+		}
+		else
+			mReader.skipCurrentElement();
+	}
+	return new CheckerTexture(new ConstantTexture(even), new ConstantTexture(odd));
 }
 
 void Scene::parseMetal()
@@ -204,7 +248,7 @@ void Scene::parseMetal()
 	
 	std::string name;
 	Vec3 albedo;
-	float fuzz;
+	float fuzz = 0.0f;
 
 	parseAttrString("name", name);
 	while (mReader.readNextStartElement())
@@ -228,7 +272,7 @@ void Scene::parseDielectric()
 	Q_ASSERT(mReader.isStartElement() && mReader.name() == "dielectric");
 
 	std::string name;
-	float indice;
+	float indice = 0.0f;
 
 	parseAttrString("name", name);
 	while (mReader.readNextStartElement())
@@ -263,6 +307,10 @@ void Scene::parseObject()
 		{
 			parseSphere();
 		}
+		else if (mReader.name() == "movingsphere")
+		{
+			parseMovingSphere();
+		}
 		else
 			mReader.skipCurrentElement();
 	}
@@ -293,6 +341,51 @@ void Scene::parseSphere()
 	if (mMatsMap[material])
 	{
 		mHitables.push_back(new Sphere(center, radius, mMatsMap[material]));
+	}
+	else
+	{
+		qDebug() << "Material not found";
+	}
+}
+
+void Scene::parseMovingSphere()
+{
+	Q_ASSERT(mReader.isStartElement() && mReader.name() == "movingsphere");
+
+	std::string material;
+	Vec3 center0, center1;
+	float t0, t1;
+	float radius = 0.0f;
+
+	parseAttrString("material", material);
+	while (mReader.readNextStartElement())
+	{
+		if (mReader.name() == "center0")
+		{
+			parseVec3(center0);
+		}
+		else if (mReader.name() == "center1")
+		{
+			parseVec3(center1);
+		}
+		else if (mReader.name() == "t0")
+		{
+			parseFloat(t0);
+		}
+		else if (mReader.name() == "t1")
+		{
+			parseFloat(t1);
+		}
+		else if (mReader.name() == "radius")
+		{
+			parseFloat(radius);
+		}
+		else
+			mReader.skipCurrentElement();
+	}
+	if (mMatsMap[material])
+	{
+		mHitables.push_back(new MovingSphere(center0, center1, t0, t1, radius, mMatsMap[material]));
 	}
 	else
 	{
