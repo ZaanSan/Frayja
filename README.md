@@ -20,6 +20,20 @@ The raytracer engine of the software is based on the raytracing books of Peter S
 - Perlin noise
 - Checker pattern
 
+## Screenshots
+
+GUI
+![Alt text](/Res/FrayjaUI.PNG?raw=true "Optional Title")
+
+GUI during rendering
+![Alt text](/Res/FrayjaRendering.PNG?raw=true "Optional Title")
+
+Scene 3
+![Alt text](/Output/scene3.png?raw=true "Optional Title")
+
+Scene 6
+![Alt text](/Output/scene6.png?raw=true "Optional Title")
+
 ## Getting Started
 
 ### Prerequisites
