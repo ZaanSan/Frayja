@@ -25,6 +25,7 @@ The raytracer part of the software is based on the raytracing books of Peter Shi
 ### Prerequisites
 
 Windows only
+
 Visual studio and Qt installed
 
 ### How to use it
