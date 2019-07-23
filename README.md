@@ -12,6 +12,7 @@ The raytracer engine of the software is based on the raytracing books of Peter S
 - XML scene files
 - Multithreading
 - "Real-time" view of the rendering.
+- Dockable menu toolbar and Configuration menu
 - Save rendered image in ppm format
 - Materials
 - Shapes (only circle for the moment)
@@ -44,7 +45,9 @@ Visual studio and Qt installed.
 
 ### How to use it
 
-Launch the executable either inside Visual Studio or standalone
+Launch the executable either inside Visual Studio or standalone.
+
+You may need to resize the window at the beggining! If you use a 4k display, uncomment the first line of main.cpp file.
 
 ## License
 
