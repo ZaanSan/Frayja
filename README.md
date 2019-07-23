@@ -1,7 +1,7 @@
 # Frayja
 
 ![CPP](https://img.shields.io/badge/C++-11-blue.svg)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-LGPL-blue.svg)](https://opensource.org/licenses/MIT)
 
 C++ Raytracing software with Qt GUI.
 The raytracer engine of the software is based on the raytracing books of Peter Shirley (http://www.realtimerendering.com/raytracing/)
@@ -48,4 +48,4 @@ Launch the executable either inside Visual Studio or standalone
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU Lesser General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
