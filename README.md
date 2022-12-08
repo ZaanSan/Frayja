@@ -26,7 +26,6 @@ The raytracer engine of the software is based on the raytracing books of Peter S
 GUI
 ![Alt text](/Res/FrayjaUI.PNG?raw=true "Optional Title")
 
-GUI during rendering
 ![Alt text](/Res/FrayjaRendering.PNG?raw=true "Optional Title")
 
 Scene 3
